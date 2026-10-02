@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Write - Mindful Toolbox{% endblock %}
+{% block content %}
+<div class="center-stage">
+  <p class="soft-phrase typewriter" aria-label="Nothing here is saved unless you choose to. Just write.">
+    <span id="typewriter-text" aria-hidden="true"></span>
+  </p>
+  <textarea id="writing-area" placeholder="..." autofocus></textarea>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+  const typewriter = document.getElementById("typewriter-text");
+  const message = "Nothing here is saved unless you choose to. Just write.";
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (reducedMotion) {
+    typewriter.textContent = message;
+  } else {
+    let character = 0;
+    const typeNextCharacter = () => {
+      typewriter.textContent = message.slice(0, character + 1);
+      character += 1;
+      if (character < message.length) {
+        window.setTimeout(typeNextCharacter, 45);
+      }
+    };
+    window.setTimeout(typeNextCharacter, 350);
+  }
+
+  trackEvent("page_view", "write");
+</script>
+{% endblock %}

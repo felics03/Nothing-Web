@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}timer - Mindful Toolbox{% endblock %}
+{% block content %}
+<div class="center-stage timer-stage">
+  <section class="timer-setup" id="timer-setup" aria-label="Timer duration">
+    <div class="timer-picker" aria-label="Choose timer duration">
+      <div class="timer-wheel-frame">
+        <div class="timer-wheel" id="minutes-wheel" role="listbox" tabindex="0" aria-label="Minutes" aria-orientation="vertical"></div>
+      </div>
+      <div class="timer-wheel-frame">
+        <div class="timer-wheel" id="seconds-wheel" role="listbox" tabindex="0" aria-label="Seconds" aria-orientation="vertical"></div>
+      </div>
+    </div>
+    <button class="timer-action timer-start" id="start-btn" type="button">Start</button>
+  </section>
+
+  <section class="timer-running" id="timer-running" aria-label="Timer" hidden>
+    <div class="timer-ring" id="timer-ring" role="timer" aria-live="off" style="--progress: 0%">
+      <div class="timer-ring-content">
+        <div class="timer-status"><span class="timer-status-dot"></span><span id="timer-status-text">Ready</span></div>
+        <div id="timer-display">25:00</div>
+      </div>
+    </div>
+    <div class="timer-running-controls">
+      <button class="timer-action timer-cancel" id="cancel-btn" type="button">Cancel</button>
+      <button class="timer-action timer-pause" id="pause-btn" type="button">Pause</button>
+    </div>
+  </section>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="/static/js/timer.js"></script>
+<script>
+  trackEvent("page_view", "timer");
+</script>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}snake - Mindful Toolbox{% endblock %}
+{% block content %}
+<div class="center-stage">
+  <p class="soft-phrase">No score to beat. Just move.</p>
+  <canvas id="snake-canvas" width="400" height="400"></canvas>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="/static/js/snake.js"></script>
+<script>
+  trackEvent("page_view", "snake");
+</script>
+{% endblock %}
